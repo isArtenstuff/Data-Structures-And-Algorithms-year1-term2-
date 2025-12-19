@@ -22,6 +22,7 @@ class ArrayStack:
             return self.data.pop()
         else:
             print("Underflow: Cannot pop data from an empty list")
+            return None
     def is_empty(self):
         return self.size == 0
     def get_stack_top(self):
@@ -35,11 +36,31 @@ class ArrayStack:
     def print_stack(self):
         print(f"{self.data}")
 
-"""Parentheses Matching"""
-def is_parentheses_matching():
-    inp = input()
-    new = ArrayStack()
-    for ch in inp:
-        new.push(ch)
-    print(new)
-is_parentheses_matching()
+def group():
+    allGroup = int(input())
+    allName = int(input())
+    student = ArrayStack()
+    listGroup = []
+    group_index = 0
+    for _ in range(allGroup):
+        listGroup.append(ArrayStack())
+    for _ in range(allName):
+        name = input()
+        student.push(name)
+    while not student.is_empty():
+        listGroup[group_index].push(student.pop())
+        group_index = (group_index + 1) % allGroup
+
+    for i in range(allGroup):
+        print(f"Group {i + 1}:", end=" ")
+        first = True
+        resk = ArrayStack()
+        while not listGroup[i].is_empty():
+            resk.push(listGroup[i].pop())
+        while not resk.is_empty():
+            if not first:
+                print(", ", end="")
+            print(resk.pop(), end="")
+            first = False
+        print()
+group()

@@ -22,6 +22,7 @@ class ArrayStack:
             return self.data.pop()
         else:
             print("Underflow: Cannot pop data from an empty list")
+            return None
     def is_empty(self):
         return self.size == 0
     def get_stack_top(self):
